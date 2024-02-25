@@ -18,5 +18,10 @@ public interface UserService {
 	void deleteUser(Integer userId);
 	
 
-	
+class abc{
+	void sum(){
+
+	}
+
+	}
 }
