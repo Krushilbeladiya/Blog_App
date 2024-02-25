@@ -14,14 +14,9 @@ public interface UserService {
 	UserDTO getUserByid(Integer userId);
 	
 	List<UserDTO>getAllUser();
-	
+
 	void deleteUser(Integer userId);
-	
 
-class abc{
-	void sum(){
+// ok
 
-	}
-
-	}
 }
