@@ -6,8 +6,10 @@ import com.Blog.app.Service_imlements.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class UserController {
     // create User
 
     @PostMapping("/createUser")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
         UserDTO createUserDto = this.userService.createUser(userDTO);
 
         return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
@@ -31,7 +33,7 @@ public class UserController {
     //Update User
 
     @PostMapping("/{UserId}")
-    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO, @PathVariable("UserId") Integer UserId) {
+    public ResponseEntity<UserDTO> update( @RequestBody UserDTO userDTO, @PathVariable("UserId") Integer UserId) {
         UserDTO updateUser = this.userService.updateUser(userDTO, UserId);
         return ResponseEntity.ok(updateUser);
     }
@@ -50,6 +52,7 @@ public class UserController {
 
     @GetMapping("/")
     public ResponseEntity<List<UserDTO>> getAllUser() {
+
         return ResponseEntity.ok(userService.getAllUser());
     }
 
