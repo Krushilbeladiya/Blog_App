@@ -1,8 +1,10 @@
 package com.Blog.app.Service_imlements;
 
 import com.Blog.app.Entities.Category;
+import com.Blog.app.Entities.User;
 import com.Blog.app.Exceptions.ResourceNotFoundException;
 import com.Blog.app.Payloads.CategoryDTO;
+import com.Blog.app.Payloads.UserDTO;
 import com.Blog.app.Repositories.CategoryRepo;
 import com.Blog.app.Service.CategoryService;
 import org.modelmapper.ModelMapper;
@@ -25,13 +27,33 @@ ModelMapper mapper;
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
 
 
+        Category user = dtoToUser(categoryDTO);
 
-        Category cat=this.mapper.map(categoryDTO,Category.class);
-        System.out.println(cat);
-        Category addcat=categoryRepo.save(cat);
-        return this.modelMapper.map(addcat,CategoryDTO.class    );
+        Category savedUser = categoryRepo.save(user);
+        System.out.println(savedUser);
+        return UserToDto(savedUser);
+
 
     }
+
+    private Category dtoToUser(CategoryDTO categoryDTO) {
+        Category category = new Category();
+
+        category.setCategoryTitle(categoryDTO.getCategoryTitle());
+        category.setCategoryId(categoryDTO.getCategoryId());
+        category.setDescription(categoryDTO.getDescriptions());
+        return category;
+    }
+
+
+    private CategoryDTO  UserToDto(Category category){
+        CategoryDTO categoryDTO=new CategoryDTO();
+        category.setCategoryId(categoryDTO.getCategoryId());
+        category.setCategoryTitle(categoryDTO.getCategoryTitle());
+        category.setDescription(categoryDTO.getDescriptions());
+        return categoryDTO;
+    }
+
 
     @Override
     public CategoryDTO updateCategory(CategoryDTO categoryDTO, Integer CategoryId) {

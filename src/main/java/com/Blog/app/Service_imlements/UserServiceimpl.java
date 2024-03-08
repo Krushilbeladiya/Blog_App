@@ -76,10 +76,7 @@ public class UserServiceimpl implements UserService {
 //        user.setPassword(userDTO.getPassword());
 //        user.setAbout(userDTO.getAbout());
 //        return user;
-
         User user = modelMapper.map(userDTO, User.class);
-
-
         return user;
 
     }

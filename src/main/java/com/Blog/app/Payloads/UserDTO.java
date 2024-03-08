@@ -2,6 +2,7 @@ package com.Blog.app.Payloads;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.*;
 @Data
 public class UserDTO {
 
+    @Id
     private int id;
 
     @NotEmpty
